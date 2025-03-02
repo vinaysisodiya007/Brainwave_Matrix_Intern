@@ -106,10 +106,13 @@ Query OK, 0 rows affected (0.02 sec)
 | Ramcharitmanas |         9 |
 +----------------+-----------+
 ```
-## Author 
-### Vinay Sisodiya
 
-## Demo Video  
-[Watch the Demo Video on YouTube](https://youtu.be/sr-aMJeE0m8)
+## 📽️ Implementation 
 
+[![Library Management System Demo](https://img.youtube.com/vi/sr-aMJeE0m8/hqdefault.jpg)](https://youtu.be/sr-aMJeE0m8)  
+
+🔗 [Watch here](https://youtu.be/sr-aMJeE0m8)
+
+
+#### Author: Vinay Sisodiya
 
