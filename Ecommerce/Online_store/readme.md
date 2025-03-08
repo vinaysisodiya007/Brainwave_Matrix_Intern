@@ -1,45 +1,97 @@
-Online Store
+# Online Store Database  
 
-Overview
+## Description  
+The **Online Store Database** is a MySQL-based project designed to manage an e-commerce store. It includes tables for users, products, orders, and payments, providing a structured approach to handling an online shopping system.
+
+## Features  
+- **User Management**: Register, update, and manage users.  
+- **Product Management**: Add, update, and categorize products.  
+- **Order Processing**: Track purchases and order details.  
+- **Payment System**: Store payment transaction details.  
+- **Stock Management**: Monitor product availability.  
+
+## Database Schema  
+
+### Users Table  
+```sql
+CREATE TABLE users (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(15),
+    address TEXT
+);
 ```
-The Online Store is a web application designed to provide a seamless shopping experience for customers. The platform includes features such as user management, product management, order processing, payment integration, and customer support. The project is built using React.js for the frontend and Java with Spring Boot for the backend.
+### Products Table
 ```
-Features
+sql
 
-1. User Management
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    category VARCHAR(100),
+    price DECIMAL(10,2) NOT NULL,
+    stock INT DEFAULT 0
+);
+```
+### Orders Table
+```
+sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10,2),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+```
+### Payments Table
+```
+sql
+CREATE TABLE payments (
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    payment_method VARCHAR(50),
+    payment_status ENUM('Pending', 'Completed', 'Failed'),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+```
+### Query Results
+🔹Users Table
+```
++---------+-------+-------------------+------------+-----------------+
+| user_id | name  | email             | phone      | address         |
++---------+-------+-------------------+------------+-----------------+
+| 1       | Vinay | Vinay@gmail.com   | 9876543210 |     Germany     |
++---------+-------+-------------------+------------+-----------------+
+```
+🔹 Products Table
+```
+pgsql
 
-Customer registration & login
++------------+----------------+----------+-------+-------+
+| product_id | name           | category | price | stock |
++------------+----------------+----------+-------+-------+
+| 1          | Laptop         | Electronics | 500.00 | 10 |
++------------+----------------+----------+-------+-------+
+```
+🔹 Orders Table (After Placing an Order)
+```
++---------+---------+------------+-------------+
+| order_id| user_id | order_date | total_amount|
++---------+---------+------------+-------------+
+| 1       | 1       | 2025-02-27 | 80000.00      |
++---------+---------+------------+-------------+
+```
+🔹 Payments Table (After Successful Payment)
+```
++------------+---------+--------------+----------------+
+| payment_id | order_id | payment_method | payment_status |
++------------+---------+--------------+----------------+
+| 1          | 1       | Credit Card    | Completed     |
++------------+---------+--------------+----------------+
+```
+📽️ Demo Video
 
-Admin and vendor roles
 
-User profile management
-
-2. Product Management
-
-Categories and variants
-
-Product search and filtering
-
-Inventory tracking
-
-3. Order & Checkout
-
-Shopping cart and wishlist
-
-Secure payment processing
-
-Order history and tracking
-
-4. Shipping & Delivery
-
-Delivery tracking system
-
-Shipping cost calculations
-
-Multiple shipping options
-
-5. Customer Support & Reviews
-
-Live chat support
-
-Product ratings and reviews
+🔗 Watch on YouTube
